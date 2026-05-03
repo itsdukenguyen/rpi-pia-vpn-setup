@@ -5,9 +5,16 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-Complete guide for installing, configuring, and maintaining **Vaultwarden** (Bitwarden-compatible password manager) on my **TrueNAS Scale** server as part of my home lab.
+Complete guide for installing, configuring, and maintaining **Vaultwarden** (Bitwarden-compatible password manager) on my **TrueNAS Scale** server.
 
 **Last Updated:** April 30, 2026
+
+## Quick Links
+
+- **[Setup Checklist](SETUP-CHECKLIST.md)**
+- **[EdgeRouter-4 Firewall Rules](edge-router-firewall-rules.md)**
+- **[VLAN Overview](docs/vlan-overview.md)**
+- **[Backup Script](scripts/vaultwarden_backup.sh)**
 
 ## Screenshots
 
@@ -17,29 +24,17 @@ Complete guide for installing, configuring, and maintaining **Vaultwarden** (Bit
   <img src="screenshots/04-vaultwarden-admin-ui-03.png" width="600" alt="SMTP Settings">
 </div>
 
-## Quick Links
-
-- [Setup Checklist](SETUP-CHECKLIST.md)
-- [EdgeRouter-4 Firewall Rules](edge-router-firewall-rules.md)
-- [Backup Script](scripts/vaultwarden_backup.sh)
-- [VLAN Overview](docs/vlan-overview.md)
-
 ## Overview
 
 - **Server**: TrueNAS Scale @ `192.168.10.101`
 - **Public URL**: [https://vaultwarden-nguyen.duckdns.org](https://vaultwarden-nguyen.duckdns.org)
-- **Backup**: Daily encrypted GPG backups (30-day retention)
+- **Backup**: Daily encrypted GPG backups with 30-day retention
+- **Access**: Nginx Proxy Manager + Let's Encrypt
 
----
+## Repository Structure
 
-**Save and close Notepad.**
-
----
-
-### 2. Create Remaining Files
-
-#### a. Move backup script to `scripts/`
-
-```powershell
-Move-Item backup-script/vaultwarden_backup.sh scripts/vaultwarden_backup.sh -Force
-Remove-Item backup-script -Recurse -Force
+- `docs/` — Network & VLAN documentation
+- `scripts/` — Automation scripts
+- `screenshots/` — Visual setup references
+- `SETUP-CHECKLIST.md` — Step-by-step installation guide
+- `edge-router-firewall-rules.md` — All ER-4 firewall rules
