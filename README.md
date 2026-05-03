@@ -1,32 +1,34 @@
-<<<<<<< HEAD
 # Raspberry Pi 4 - PIA VPN with Persistent SSH & VNC Access
 
-**Goal**: Run Private Internet Access (PIA) VPN on `rpi-torrent` (192.168.10.115) while maintaining local SSH (port 22) and VNC (port 5900) access from Management VLAN (`192.168.1.0/24`) and Clients VLAN (`192.168.30.0/24`), even after reboots.
+**Project Goal**: Run Private Internet Access (PIA) VPN on `rpi-torrent` (`192.168.10.115`) while maintaining **local SSH (22)** and **VNC (5900)** access from Management and Clients VLANs — even after reboots.
 
-## Hardware & Software
-- **Device**: Raspberry Pi 4B (rpi-torrent @ 192.168.10.115)
-- **VPN Client**: PIA Linux ARM64 (`pia-linux-arm64-3.6.1-08339`)
-- **Router**: Ubiquiti EdgeRouter 4 (ER-4 @ 192.168.1.1)
-- **Access**: Tailscale (backup), SSH, VNC
-
-## Table of Contents
-- [Installation Steps](docs/PIA-Installation.md)
-- [EdgeRouter-4 Firewall Rules](docs/ER4-Firewall-Rules.md)
-- [iptables Split Tunneling](docs/iptables-split-tunnel.md)
-- [Systemd Services](docs/Systemd-Services.md)
-- [Troubleshooting](docs/Troubleshooting.md)
+---
 
 ## Features
-- SSH and VNC bypass PIA VPN tunnel using iptables + policy routing
-- Persistent across reboots via `netfilter-persistent` and systemd
-- Full local network access from Management and Clients VLANs
+
+- iptables policy routing to bypass VPN for SSH/VNC
+- Persistent across reboots (`netfilter-persistent` + systemd)
+- Full local network access from VLAN1 & VLAN30
+- Detailed EdgeRouter-4 firewall configuration
 - Tailscale as backup remote access
 
-## Prerequisites
-- Raspberry Pi OS (Bookworm or later)
-- PIA account (username: `p1684898`)
-- ER-4 with VLAN10 (Servers) configured
-=======
-# rpi-pia-vpn-setup
-PIA VPN + iptables split-tunneling setup on Raspberry Pi 4 for maintaining SSH/VNC access while torrenting
->>>>>>> 77e16f4adb63934230e02f5e6535ea40fb5613c0
+## Table of Contents
+
+- [PIA VPN Installation](docs/PIA-Installation.md)
+- [iptables Split Tunneling](docs/iptables-split-tunnel.md)
+- [Systemd Services](docs/Systemd-Services.md)
+- [EdgeRouter-4 Firewall Rules](docs/ER4-Firewall-Rules.md)
+- [Troubleshooting](docs/Troubleshooting.md)
+
+## Quick Start
+
+1. Install PIA client → [Installation](docs/PIA-Installation.md)
+2. Configure iptables bypass → [Split Tunneling](docs/iptables-split-tunnel.md)
+3. Set up systemd services
+4. Add ER-4 firewall rules
+
+---
+
+**Repository Purpose**: Fully documented, repeatable home lab setup for future reinstalls.
+
+**Last Updated**: May 2026

@@ -1,7 +1,22 @@
-﻿# Ignore sensitive files
-*.txt
-pia_login.txt
-*.key
-*.pem
-__pycache__/
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Logs
 *.log
+*.bak
+
+# Sensitive files
+pia_login.txt
+*.tar.gz
+*.zip
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Large files
+*.img
+*.iso
