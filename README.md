@@ -1,40 +1,27 @@
-# Vaultwarden on TrueNAS Scale - Home Lab Setup
+# Raspberry Pi 4 - PIA VPN with Persistent SSH & VNC Access
 
-![Vaultwarden](https://img.shields.io/badge/Vaultwarden-000000?style=for-the-badge&logo=bitwarden&logoColor=white)
-![TrueNAS Scale](https://img.shields.io/badge/TrueNAS-Scale-00A3E0?style=for-the-badge&logo=truenas)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+**Goal**: Run Private Internet Access (PIA) VPN on `rpi-torrent` (192.168.10.115) while maintaining local SSH (port 22) and VNC (port 5900) access from Management VLAN (`192.168.1.0/24`) and Clients VLAN (`192.168.30.0/24`), even after reboots.
 
-Complete guide for installing, configuring, and maintaining **Vaultwarden** (Bitwarden-compatible password manager) on my **TrueNAS Scale** server.
+## Hardware & Software
+- **Device**: Raspberry Pi 4B (rpi-torrent @ 192.168.10.115)
+- **VPN Client**: PIA Linux ARM64 (`pia-linux-arm64-3.6.1-08339`)
+- **Router**: Ubiquiti EdgeRouter 4 (ER-4 @ 192.168.1.1)
+- **Access**: Tailscale (backup), SSH, VNC
 
-**Last Updated:** April 30, 2026
+## Table of Contents
+- [Installation Steps](docs/PIA-Installation.md)
+- [EdgeRouter-4 Firewall Rules](docs/ER4-Firewall-Rules.md)
+- [iptables Split Tunneling](docs/iptables-split-tunnel.md)
+- [Systemd Services](docs/Systemd-Services.md)
+- [Troubleshooting](docs/Troubleshooting.md)
 
-## Quick Links
+## Features
+- SSH and VNC bypass PIA VPN tunnel using iptables + policy routing
+- Persistent across reboots via `netfilter-persistent` and systemd
+- Full local network access from Management and Clients VLANs
+- Tailscale as backup remote access
 
-- **[Setup Checklist](SETUP-CHECKLIST.md)**
-- **[EdgeRouter-4 Firewall Rules](edge-router-firewall-rules.md)**
-- **[VLAN Overview](docs/vlan-overview.md)**
-- **[Backup Script](scripts/vaultwarden_backup.sh)**
-
-## Screenshots
-
-<div align="center">
-  <img src="screenshots/01-vaultwarden-storage-config.png" width="600" alt="Storage Configuration">
-  <img src="screenshots/03-nginx-proxy-host-01.png" width="600" alt="Nginx Proxy Host">
-  <img src="screenshots/04-vaultwarden-admin-ui-03.png" width="600" alt="SMTP Settings">
-</div>
-
-## Overview
-
-- **Server**: TrueNAS Scale @ `192.168.10.101`
-- **Public URL**: [https://vaultwarden-nguyen.duckdns.org](https://vaultwarden-nguyen.duckdns.org)
-- **Backup**: Daily encrypted GPG backups with 30-day retention
-- **Access**: Nginx Proxy Manager + Let's Encrypt
-
-## Repository Structure
-
-- `docs/` — Network & VLAN documentation
-- `scripts/` — Automation scripts
-- `screenshots/` — Visual setup references
-- `SETUP-CHECKLIST.md` — Step-by-step installation guide
-- `edge-router-firewall-rules.md` — All ER-4 firewall rules
+## Prerequisites
+- Raspberry Pi OS (Bookworm or later)
+- PIA account (username: `p1684898`)
+- ER-4 with VLAN10 (Servers) configured

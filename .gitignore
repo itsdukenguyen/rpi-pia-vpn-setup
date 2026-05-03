@@ -1,0 +1,7 @@
+﻿# Ignore sensitive files
+*.txt
+pia_login.txt
+*.key
+*.pem
+__pycache__/
+*.log
