@@ -7,8 +7,8 @@
 ## Features
 
 - iptables-based split tunneling (SSH & VNC bypass)
-- Persistent configuration across reboots
-- Full local network access from all trusted VLANs
+- Persistent configuration across reboots (`netfilter-persistent` + systemd)
+- Full local network access from trusted VLANs
 - Detailed EdgeRouter-4 firewall rules
 - Tailscale as secure backup remote access
 

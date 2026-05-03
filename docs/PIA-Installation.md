@@ -18,23 +18,18 @@ tar xzf pia-linux-arm64-3.6.1-08339.tar.gz
 cd pia-linux-arm64-3.6.1-08339
 sudo ./install.sh
 
-
 piactl --version
-
 
 echo -e "p1684898\naG6iNa33NA" | sudo tee /home/pi/pia_login.txt
 sudo chmod 600 /home/pi/pia_login.txt
 
 piactl login /home/pi/pia_login.txt
 
-
 piactl set allowlan true
 piactl background enable
 
-
 piactl get allowlan
 
-
 piactl connect
-piactl get connectionstate
-piactl get pubip
+piactl get connectionstate     # Should return "Connected"
+piactl get pubip               # Should show PIA server IP
