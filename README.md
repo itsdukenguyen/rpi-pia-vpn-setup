@@ -1,37 +1,69 @@
-![PIA VPN Banner](banner.jpg)
+# Raspberry Pi PIA VPN with Persistent SSH & VNC Access
 
-# Raspberry Pi 4 - PIA VPN with Persistent SSH & VNC Access
+<p align="center">
+  <img src="banner.jpg" alt="PIA VPN on Raspberry Pi" width="100%" />
+</p>
 
-**Project Goal**: Run Private Internet Access (PIA) VPN on `rpi-torrent` (`192.168.10.115`) while maintaining full **local SSH (port 22)** and **VNC (port 5900)** access from the Management VLAN (`192.168.1.0/24`) and Clients VLAN (`192.168.30.0/24`) — even after reboots.
+[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-4-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)](https://raspberrypi.com)
+[![Private Internet Access](https://img.shields.io/badge/PIA-VPN-orange?style=for-the-badge)](https://privateinternetaccess.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**Production-ready setup** running Private Internet Access (PIA) VPN on a Raspberry Pi while keeping full local SSH and VNC access from trusted VLANs.
 
 ---
 
-## Features
+## ✨ Key Features
 
-- iptables-based split tunneling (SSH & VNC bypass)
+- Split tunneling via iptables (VPN for torrents, local access remains direct)
 - Persistent configuration across reboots (`netfilter-persistent` + systemd)
-- Full local network access from trusted VLANs
-- Detailed EdgeRouter-4 firewall rules
-- Tailscale as secure backup remote access
-
-## Table of Contents
-
-- [PIA VPN Installation](docs/PIA-Installation.md)
-- [iptables Split Tunneling](docs/iptables-split-tunnel.md)
-- [Systemd Services](docs/Systemd-Services.md)
-- [EdgeRouter-4 Firewall Rules](docs/ER4-Firewall-Rules.md)
-- [VLAN Overview](docs/VLAN-Overview.md)
-- [Troubleshooting](docs/Troubleshooting.md)
-
-## Quick Start
-
-1. Follow [PIA Installation](docs/PIA-Installation.md)
-2. Set up [iptables bypass](docs/iptables-split-tunnel.md)
-3. Configure [Systemd Services](docs/Systemd-Services.md)
-4. Add firewall rules on ER-4
+- Secure access from Management + Clients VLANs
+- Tailscale as backup remote access
+- Fully documented for future reinstalls
 
 ---
 
-**Repository Purpose**: Fully documented, repeatable home lab setup for future reinstalls or upgrades.
+## 🚀 Quick Start
 
-**Last Updated**: May 2026
+1. Install PIA VPN → [`docs/PIA-Installation.md`](docs/PIA-Installation.md)
+2. Configure split tunneling → [`docs/iptables-split-tunnel.md`](docs/iptables-split-tunnel.md)
+3. Set up systemd services → [`docs/Systemd-Services.md`](docs/Systemd-Services.md)
+4. Add EdgeRouter-4 firewall rules → [`docs/ER4-Firewall-Rules.md`](docs/ER4-Firewall-Rules.md)
+
+---
+
+## 📖 Full Documentation
+
+| Document | Description |
+|----------|-------------|
+| [`docs/PIA-Installation.md`](docs/PIA-Installation.md) | PIA VPN installation steps |
+| [`docs/iptables-split-tunnel.md`](docs/iptables-split-tunnel.md) | Split tunneling configuration |
+| [`docs/Systemd-Services.md`](docs/Systemd-Services.md) | Persistent services |
+| [`docs/ER4-Firewall-Rules.md`](docs/ER4-Firewall-Rules.md) | EdgeRouter-4 rules |
+| [`docs/VLAN-Overview.md`](docs/VLAN-Overview.md) | Homelab VLAN architecture |
+| [`docs/Troubleshooting.md`](docs/Troubleshooting.md) | Common issues & fixes |
+
+---
+
+## 🛡️ Security Highlights
+
+- SSH (port 22) and VNC (port 5900) bypass VPN
+- Only trusted VLANs allowed
+- Tailscale fallback for external access
+
+---
+
+## 🤝 Contributing
+
+Suggestions for improving split tunneling or adding WireGuard support are welcome!
+
+---
+
+## 📄 License
+
+[MIT License](LICENSE) © 2026 Duc Nguyen
+
+---
+
+**Star this repo if it helped you run VPN securely in your homelab!** 🔒
+
+_Last updated: May 2026_
