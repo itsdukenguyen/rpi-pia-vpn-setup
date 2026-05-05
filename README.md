@@ -1,3 +1,5 @@
+![PIA VPN Banner](banner.jpg)
+
 # Raspberry Pi 4 - PIA VPN with Persistent SSH & VNC Access
 
 **Project Goal**: Run Private Internet Access (PIA) VPN on `rpi-torrent` (`192.168.10.115`) while maintaining full **local SSH (port 22)** and **VNC (port 5900)** access from the Management VLAN (`192.168.1.0/24`) and Clients VLAN (`192.168.30.0/24`) — even after reboots.
