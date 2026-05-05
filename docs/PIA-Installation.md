@@ -17,19 +17,35 @@ wget https://www.privateinternetaccess.com/installer/pia-linux-arm64-3.6.1-08339
 tar xzf pia-linux-arm64-3.6.1-08339.tar.gz
 cd pia-linux-arm64-3.6.1-08339
 sudo ./install.sh
+```
 
+## Verify:
+```bash
 piactl --version
+```
 
+## 2. Login
+```bash
 echo -e "p1684898\naG6iNa33NA" | sudo tee /home/pi/pia_login.txt
 sudo chmod 600 /home/pi/pia_login.txt
 
 piactl login /home/pi/pia_login.txt
+```
 
+## 3. Basic Settings
+```bash
 piactl set allowlan true
 piactl background enable
+```
 
+## Verify:
+```bash
 piactl get allowlan
+```
 
+## 4. Connect & Test
+```bash
 piactl connect
 piactl get connectionstate     # Should return "Connected"
 piactl get pubip               # Should show PIA server IP
+```

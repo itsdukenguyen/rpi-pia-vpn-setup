@@ -49,6 +49,9 @@ set firewall name LAN_IN rule 9 state related enable
 commit
 save
 exit
+```
 
-
+## Verify Rules:
+```bash
 show firewall name LAN_IN
+```
