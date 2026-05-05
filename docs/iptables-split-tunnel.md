@@ -3,11 +3,11 @@
 
 ### 3. `docs/iptables-split-tunnel.md`
 
-```markdown
+
 # iptables Split Tunneling for SSH & VNC (Persistent)
 
 **Purpose**: Bypass the PIA VPN tunnel for ports **22 (SSH)** and **5900 (VNC)** so local devices can still connect.
-```
+
 ---
 
 ## 1. Mark SSH and VNC Traffic
