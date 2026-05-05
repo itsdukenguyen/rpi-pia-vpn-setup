@@ -1,0 +1,94 @@
+# EdgeRouter-4 (ER-4) Relevant Configuration Snippet
+# File: config.boot-snippet.txt
+# Last Updated: May 2026
+
+# ================================================
+# LAN_IN Firewall Rules (Most Important Section)
+# ================================================
+
+firewall {
+    name LAN_IN {
+        default-action drop
+
+        # Management VLAN (192.168.1.0/24)
+        rule 1 {
+            action accept
+            description "Allow Management to Any"
+            source {
+                address 192.168.1.0/24
+            }
+        }
+
+        # === Added Rules for rpi-torrent (192.168.10.115) ===
+        rule 8 {
+            action accept
+            description "Allow Management to SSH/VNC on RPi"
+            destination {
+                address 192.168.10.115
+                port 22,5900
+            }
+            protocol tcp
+            source {
+                address 192.168.1.0/24
+            }
+            state {
+                new enable
+                established enable
+                related enable
+            }
+        }
+
+        rule 9 {
+            action accept
+            description "Allow Clients to SSH/VNC on RPi"
+            destination {
+                address 192.168.10.115
+                port 22,5900
+            }
+            protocol tcp
+            source {
+                address 192.168.30.0/24
+            }
+            state {
+                new enable
+                established enable
+                related enable
+            }
+        }
+
+        # Tailscale Rules
+        rule 17 {
+            action accept
+            description "Allow Torrent Access via VPN (VNC)"
+            destination {
+                address 192.168.10.115
+                port 5900
+            }
+            protocol tcp
+            source {
+                address 100.64.0.0/10
+            }
+            state {
+                established enable
+                related enable
+            }
+        }
+
+        rule 18 {
+            action accept
+            description "Allow VPN to SSH on RPi"
+            destination {
+                address 192.168.10.115
+                port 22
+            }
+            protocol tcp
+            source {
+                address 100.64.0.0/10
+            }
+            state {
+                established enable
+                related enable
+            }
+        }
+    }
+}
